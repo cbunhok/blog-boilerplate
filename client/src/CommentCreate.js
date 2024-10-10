@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 const CommentCreate = ({postId}) => {
-    const [comment, setComment] = useState('');
+    const [content, setContent] = useState('');
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
         await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
-            comment
+            content
         });
 
-        setComment('');
+        setContent('');
     };
 
     return (
@@ -19,7 +19,7 @@ const CommentCreate = ({postId}) => {
             <form onSubmit={onSubmit}>
                 <div className="form-group">
                     <label>Comment</label>
-                    <input value={comment} onChange={e => setComment(e.target.value)} className="form-control" />
+                    <input value={content} onChange={e => setContent(e.target.value)} className="form-control" />
                 </div>
                 <button className="btn btn-primary">Submit</button>
             </form>
